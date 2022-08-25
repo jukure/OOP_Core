@@ -2,15 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CubeEnemy : Enemy
+public class CubeEnemy : Enemy // INHERITANCE
 {
-    [SerializeField]
-    private float forceStrength = 1f;
+//    [SerializeField]
+//    private float forceStrength = 1f;
+
 
     private float forceTimerMax = 1f;
     private float forceTimer = 0f;
 
-    protected override void Move()
+    protected override void Move() //POLYMORPHISM
     {
         // move in the 
         if (forceTimer > 0f)

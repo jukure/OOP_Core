@@ -2,10 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SphereEnemy : Enemy
+public class SphereEnemy : Enemy // INHERITANCE
 {
-    [SerializeField]
-    private float forceStrength = 1f;
+
     [SerializeField]
     private float forceFrequency = 0.3f;
 
@@ -14,12 +13,13 @@ public class SphereEnemy : Enemy
 
     private Vector3 dir1,dir2;
 
+
     private void Start()
     {
         GenerateRandomMoveDirections();
     }
 
-    protected override void Move()
+    protected override void Move() //POLYMORPHISM
     {
         // generate a new direction for the sinusoidal motion
         if (forceTimer > 0f)

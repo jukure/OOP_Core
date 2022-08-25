@@ -5,9 +5,21 @@ using UnityEngine;
 public abstract class Enemy : MonoBehaviour
 {
     // Base class for enemies
-    protected int hitPoints;
+//    protected int hitPoints;
     protected Rigidbody rb;
 
+    [SerializeField]
+    protected float m_forceStrength = 1f;
+    public float forceStrength { // ENCAPSULATION
+        get
+        {
+            return m_forceStrength;
+        }
+        set 
+        {
+            forceStrength = value;
+        }
+    }
 
     void Awake()
     {
