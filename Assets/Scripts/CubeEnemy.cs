@@ -20,7 +20,7 @@ public class CubeEnemy : Enemy
             Vector3 dir = (Random.Range(0f, 1f) < 0.5f) ? transform.right : transform.forward;
             if (Random.Range(0f, 1f) < 0.5f) { dir = -dir; }
             rb.AddForce(dir * forceStrength, ForceMode.Impulse);
-            forceTimer = 1f; 
+            forceTimer = forceTimerMax; 
         }
     }
 }

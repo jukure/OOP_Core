@@ -9,7 +9,7 @@ public class SphereEnemy : Enemy
     [SerializeField]
     private float forceFrequency = 0.3f;
 
-    private float forceTimerMax = 1f;
+    private float forceTimerMax = 1.3f;
     private float forceTimer = 0f;
 
     private Vector3 dir1,dir2;
@@ -27,7 +27,7 @@ public class SphereEnemy : Enemy
             forceTimer -= Time.deltaTime;
         } else {
             GenerateRandomMoveDirections();
-            forceTimer = 1f; 
+            forceTimer = forceTimerMax; 
             rb.AddForce(dir1 * forceStrength, ForceMode.Impulse);
         }
 

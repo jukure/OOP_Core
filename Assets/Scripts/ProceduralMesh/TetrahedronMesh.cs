@@ -7,15 +7,24 @@ using System.Collections;
 public class TetrahedronMesh : MonoBehaviour {
 	
 	public bool sharedVertices = false;
-	
-	public void Rebuild(){
+
+    private void Awake()
+    {
+//		Rebuild();
+    }
+
+    public void Rebuild(){
+
+
 		MeshFilter meshFilter = GetComponent<MeshFilter>();
 		if (meshFilter==null){
 			Debug.LogError("MeshFilter not found!");
 			return;
 		}
 		MeshRenderer meshRenderer = GetComponent<MeshRenderer>();
-		meshRenderer.material = new Material(Shader.Find("Diffuse"));
+		if (meshFilter.sharedMesh == null)
+			meshRenderer.material = new Material(Shader.Find("Diffuse"));
+
 		
 		Vector3 p0 = new Vector3(0,0,0);
 		Vector3 p1 = new Vector3(1,0,0);
@@ -78,6 +87,12 @@ public class TetrahedronMesh : MonoBehaviour {
 		mesh.RecalculateNormals();
 		mesh.RecalculateBounds();
 		mesh.Optimize();
+
+		// Add mesh collider
+		MeshCollider meshc = gameObject.AddComponent(typeof(MeshCollider)) as MeshCollider;
+		meshc.sharedMesh = null;
+		meshc.sharedMesh = meshFilter.sharedMesh;
+		meshc.convex = true; // because non-convex non-kinematic is non-supported
 	}
 	
 	// Use this for initialization
